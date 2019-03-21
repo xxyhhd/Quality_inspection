@@ -16,6 +16,22 @@ def create_app(ConfigName):
     ext_int(app)
     # 注册蓝本
     register_blueprint(app)
-    # 初始化加载自定义过滤器
 
     return app
+
+
+# # 定义一个加载自定义过滤器的方法
+# def add_filter(app):
+#     # 博客内容超过规定字数，显示...
+#     @app.template_filter()
+#     def showEllipsis(str, length=5):
+#         if len(str) > length:
+#             str = str[0:300] + '...'
+#         return str
+
+#     # 搜索出来的内容替换为红色
+#     @app.template_filter()
+#     def replace_red(str, search_info):
+#         if str:
+#             str = str.replace(search_info, '<span style=color:red;>'+search_info+'</span>')
+        # return str

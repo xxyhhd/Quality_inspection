@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request
-# from app.models import Posts  # 导入博客模型类
+from flask import Blueprint, render_template, request, current_app
+from app.models import Ticket  # 导入单据模型类
 
 # 首页的蓝本文件
 main = Blueprint('main', __name__)
@@ -8,22 +8,6 @@ main = Blueprint('main', __name__)
 @main.route('/', methods=['POST', 'GET'])
 @main.route('/index/', methods=['POST', 'GET'])
 def index():
-    a = '你好'
-    return render_template('main/index.html', a=a)
-
-
-# @main.route('/')
-# @main.route('/index/')
-# def index():
-#     try:
-#         page = int(request.args.get('page', 1))
-#     except:
-#         page = 1
-#     # 查出所有人可见的博客并按时间降序进行展示
-#     pagination = Posts.query.filter(Posts.pid == 0, Posts.state == True).order_by\
-#         (Posts.timestamp.desc()).paginate(page, current_app.config['PAGE_NUM'], False)
-#     # 获取当前页面所有数据
-#     data = pagination.items
-#     return render_template('main/index.html', p=data, pagination=pagination)
-
-
+    # form = Add_engibeer()
+    data = Ticket.query.all()
+    return render_template('main/index.html', data=data)

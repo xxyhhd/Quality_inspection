@@ -1,10 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 {% block navbar %}
-        <a href="{{ url_for('main.index') }}">
-        <div style="height: 50px; color: blue; font-size: 40px; margin-left: 80px">学习记录博客</div>
-            <div style="font-size: 40px; height: 50px; color: blue; margin-left: 160px">新手，学习中</div></a>
-
-    <nav class="navbar navbar-inverse">
+<div style="height: 50px; color: blue; font-size: 40px; margin-left: 80px">gnoc质量检查工具</div>
+<nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -15,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">博客</a>
+                <!-- <a class="navbar-brand" href="">工程师管理</a> -->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -23,53 +20,27 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ url_for('main.index') }}">首页<span
                             class="sr-only">(current)</span></a></li>
-                    <li><a href="{{ url_for('posts.send_posts') }}">发表博客</a></li>
-                    {#                    <li class="dropdown">#}
-                    {#                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"#}
-                    {#                           aria-expanded="false">个人信息 <span class="caret"></span></a>#}
-                    {#                        <ul class="dropdown-menu">#}
-                    {#                            <li><a href="#">个人信息</a></li>#}
-                    {#                            <li><a href="#">修改密码</a></li>#}
-                    {#                            <li><a href="#">修改信息</a></li>#}
-                    {#                            <li role="separator" class="divider"></li>#}
-                    {#                            <li><a href="#">占位</a></li>#}
-                    {#                            <li role="separator" class="divider"></li>#}
-                    {#                            <li><a href="#">退出登陆</a></li>#}
-                    {#                        </ul>#}
-                    {#                    </li>#}
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <form class="navbar-form navbar-left" method="post" action="{{ url_for('posts.search') }}">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="搜索" name="search">
-                        </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </form>
-                    {#                    判断当前是否处于登录状态#}
-                    {% if current_user.is_authenticated %}
-                        <li><a>欢迎：{{ current_user.username }}</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('user.login') }}">登陆</a></li>
-                    {% endif %}
-
-                    <li><a href="{{ url_for('user.register') }}">注册</a></li>
+                    <li><a href="{{url_for('engineer.engineer_manage')}}">工程师管理</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true"
-                           aria-expanded="false">个人信息 <span class="caret"></span></a>
+                           aria-expanded="false">单据管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('user.my_info') }}">个人信息</a></li>
-                            <li><a href="{{ url_for('user.change_username') }}">修改账号</a></li>
-                            <li><a href="{{ url_for('user.change_password') }}">修改密码 </a></li>
-                            <li><a href="{{ url_for('user.change_icon') }}">修改头像 </a></li>
-                            <li><a href="{{ url_for('user.change_email') }}">修改邮箱 </a></li>
-                            <li><a href="{{ url_for('owncenter.posts_manager') }}">我的博客 </a></li>
-                            <li><a href="{{ url_for('owncenter.my_attention') }}">我的收藏 </a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ url_for('user.logout') }}">退出登陆</a></li>
+                            <li><a href="{{url_for('ticket.build_ticket')}}">新建单据</a></li>
+                            <li><a href="">所有单据</a></li>
+                            <li><a href="">SR单据</a></li>
+                            <li><a href="">INC单据</a></li>
+                            <li><a href="">监控单</a></li>
                         </ul>
-                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left" method="post" action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="搜索"  name="search">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
 
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -93,7 +64,7 @@
     </div>
 {% endblock %}
 {% block scripts %}
-    {{ super() }}
+{{ super() }}
     {{ moment.include_moment() }}
     {{ moment.locale('zh-CN') }}
 {% endblock %}
