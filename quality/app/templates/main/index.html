@@ -1,61 +1,80 @@
 {% extends'common/base.html' %}
 {% block title %}
-工程师管理
+gnoc
 {% endblock %}
 
 
 {% block styles %}
 {{ super() }}
+
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}" />
 {% endblock %}
+
+
 {% block page_content %}
 
-<table class="table table-bordered table-hover definewidth m10 ">
+<table class="table table-bordered table-hover definewidth m10 " style="width:1100px; table-layout:fixed; text-align: left; vertical-align: middle">
     <thead>
-        <tr>
-            <th>时间</th>
-            <th>单号</th>
+        <tr bgcolor=blue>
+            <th style="width:150px">单号</th>
+            <th style="width:100px">抽查时间</th>
             <th>概述</th>
-            <th>单据类型</th>
-            <th>到组时间</th>
-            <th>接单工程师</th>
-            <!-- <th>操作</th> -->
+            <th style="width:80px">单据类型</th>
+            <th style="width:100px">到组时间</th>
+            <th style="width:100px">接单工程师</th>
+            <th style="width:130px">操作</th>
 
 
         </tr>
     </thead>
     {% for row in data %}
-    <tr style="" onclick="fun({{ row.id }})">
+    <tr bgcolor=yellow onclick="fun('{{ row.id }}');">
         <!-- <span style="" onclick="fun({{ row.id }})" id="f{{ row.id }}"> -->
-            <td>{{ row.death_date }}</td>
-            <td>{{ row.number }}</td>
-            <td>{{ row.summary }}</td>
-            <td>{{ row.ticket_type }}</td>
-            <td>{{ row.assinge_date }}</td>
-            <td>{{ row.assigne_id }}</td>
-        <!-- </span> -->
+        <td>{{ row.number }}</td>
+        <td>{{ row.death_date }}</td>
+        <td style="overflow:hidden">{{ row.summary }}</td>
+        <td>{{ row.ticket_type }}</td>
+        <td>{{ row.assinge_date }}</td>
+        <td>{{ row.assigne_id }}</td>
+        <td>
+            <a href="" target="_blank">修改</a>|
+            <a href="{{url_for('ticket.build_process', id=row.id)}}" target="_blank">添加</a>|
+            <a href="{{url_for('ticket.delete_ticket', id=row.id)}}">删除</a>
+        </td>
     </tr>
-    <tr style="display: none" id="{{ row.id }}">
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-
-    </tr>
+    <tbody style="display: none" id="{{ row.id }}">
+        <th>处理工程师</th>
+        <th>处理时间</th>
+        <th>是否完全更新</th>
+        <th>是否符合规范</th>
+        {% for row2 in process %}
+        {% if row2.ticket_id == row.id %}
+        <tr>
+            <td>{{ row2.engineer_id }}</td>
+            <td>{{ row2.time }}</td>
+            <td>{{ row2.process_one }}</td>
+            <td>{{ row2.process_two }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
     {% endfor %}
+
 </table>
+
+<!-- 分页 -->
+{% from 'common/page_macro.html' import page_macro %}
+{{ page_macro('main.index', pagination)}}
 {% endblock %}
 {% block scripts %}
 {{ super() }}
 <script>
     function fun(TagName) {
         var obj = document.getElementById(TagName);
-        if (obj.style.display=='none'){
+        if (obj.style.display == 'none') {
             obj.style.display = '';
-        }else{
-            obj.style.display='none';
+        } else {
+            obj.style.display = 'none';
         }
     }
 </script>

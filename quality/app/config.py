@@ -8,7 +8,7 @@ class Config:
     SECRET_KEY = '123QWE'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # 每页显示数据的条数，分页使用
-    PAGE_NUM = 3
+    PAGE_NUM = 7
 
     # UPLOADED_PHOTOS_DEST = os.path.join(os.path.dirname(os.getcwd()), 'static/upload')
     # MAX_CONTENT_LENGTH = 1024*1024*64
@@ -19,7 +19,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     TESTING = False
     # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456789@127.0.0.1:3306/flask_blog'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, 'data1-dev.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, 'data2-dev.sqlite')
 
 
 # 测试环境的配置

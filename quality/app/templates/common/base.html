@@ -27,15 +27,15 @@
                            aria-expanded="false">单据管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{url_for('ticket.build_ticket')}}">新建单据</a></li>
-                            <li><a href="">所有单据</a></li>
-                            <li><a href="">SR单据</a></li>
-                            <li><a href="">INC单据</a></li>
-                            <li><a href="">监控单</a></li>
+                            <li><a href="{{url_for('main.index')}}">所有单据</a></li>
+                            <li><a href="{{url_for('main.show_SR')}}">SR单据</a></li>
+                            <li><a href="{{url_for('main.show_INC')}}">INC单据</a></li>
+                            <li><a href="{{url_for('main.show_MONITOR')}}">监控单</a></li>
                         </ul>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <form class="navbar-form navbar-left" method="post" action="">
+                    <form class="navbar-form navbar-left" method="post" action="{{ url_for('ticket.search') }}">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="搜索"  name="search">
                         </div>
@@ -43,8 +43,8 @@
                     </form>
 
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </nav>
 {%- endblock navbar %}
 {% block content %}

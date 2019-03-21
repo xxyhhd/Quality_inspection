@@ -9,5 +9,5 @@ class Ticket(db.Model, DB):
     summary = db.Column(db.Text)
     ticket_type = db.Column(db.String(10))
     assinge_date = db.Column(db.Date)  # 到组时间
-    death_date = db.Column(db.Date, default=datetime.utcnow())  # 检查时间
+    death_date = db.Column(db.Date, default=datetime.now())  # 检查时间
     assigne_id = db.Column(db.Integer)
