@@ -15,14 +15,14 @@ gnoc
 
 <table class="table table-bordered table-hover definewidth m10 " style="width:1100px; table-layout:fixed; text-align: left; vertical-align: middle">
     <thead>
-        <tr bgcolor=blue>
-            <th style="width:150px">单号</th>
-            <th style="width:100px">抽查时间</th>
-            <th>概述</th>
-            <th style="width:80px">单据类型</th>
-            <th style="width:100px">到组时间</th>
-            <th style="width:100px">接单工程师</th>
-            <th style="width:130px">操作</th>
+        <tr bgcolor=red>
+            <th style="width:150px; text-align: center; vertical-align: middle">单号</th>
+            <th style="width:100px; text-align: center; vertical-align: middle">抽查时间</th>
+            <th style="text-align: center; vertical-align: middle">概述</th>
+            <th style="width:80px; text-align: center; vertical-align: middle">单据类型</th>
+            <th style="width:100px; text-align: center; vertical-align: middle">到组时间</th>
+            <th style="width:100px; text-align: center; vertical-align: middle">接单工程师</th>
+            <th style="width:130px; text-align: center; vertical-align: middle">操作</th>
 
 
         </tr>
@@ -30,30 +30,30 @@ gnoc
     {% for row in data %}
     <tr bgcolor=yellow onclick="fun('{{ row.id }}');">
         <!-- <span style="" onclick="fun({{ row.id }})" id="f{{ row.id }}"> -->
-        <td>{{ row.number }}</td>
-        <td>{{ row.death_date }}</td>
+        <td style="text-align: center; vertical-align: middle">{{ row.number }}</td>
+        <td style="text-align: center; vertical-align: middle">{{ row.death_date }}</td>
         <td style="overflow:hidden">{{ row.summary }}</td>
-        <td>{{ row.ticket_type }}</td>
-        <td>{{ row.assinge_date }}</td>
-        <td>{{ row.assigne_id }}</td>
-        <td>
+        <td style="text-align: center; vertical-align: middle">{{ row.ticket_type }}</td>
+        <td style="text-align: center; vertical-align: middle">{{ row.assinge_date }}</td>
+        <td style="text-align: center; vertical-align: middle">{{ row.assigne_id }}</td>
+        <td style="text-align: center; vertical-align: middle">
             <a href="" target="_blank">修改</a>|
             <a href="{{url_for('ticket.build_process', id=row.id)}}" target="_blank">添加</a>|
             <a href="{{url_for('ticket.delete_ticket', id=row.id)}}">删除</a>
         </td>
     </tr>
     <tbody style="display: none" id="{{ row.id }}">
-        <th>处理工程师</th>
-        <th>处理时间</th>
-        <th>是否完全更新</th>
-        <th>是否符合规范</th>
+        <th style="text-align: center; vertical-align: middle">处理工程师</th>
+        <th style="text-align: center; vertical-align: middle">处理时间</th>
+        <th style="text-align: center; vertical-align: middle">是否完全更新</th>
+        <th style="text-align: center; vertical-align: middle">是否符合规范</th>
         {% for row2 in process %}
         {% if row2.ticket_id == row.id %}
         <tr>
-            <td>{{ row2.engineer_id }}</td>
-            <td>{{ row2.time }}</td>
-            <td>{{ row2.process_one }}</td>
-            <td>{{ row2.process_two }}</td>
+            <td style="text-align: center; vertical-align: middle">{{ row2.engineer_id }}</td>
+            <td style="text-align: center; vertical-align: middle">{{ row2.time }}</td>
+            <td style="text-align: center; vertical-align: middle">{{ row2.process_one }}</td>
+            <td style="text-align: center; vertical-align: middle">{{ row2.process_two }}</td>
         </tr>
         {% endif %}
         {% endfor %}
