@@ -13,7 +13,9 @@ gnoc
 
 {% block page_content %}
 
-<table class="table table-bordered table-hover definewidth m10 " style="width:1100px; table-layout:fixed; text-align: left; vertical-align: middle">
+<table class="table table-bordered table-hover definewidth m10 "
+    style="width:1100px; table-layout:fixed; text-align: left; vertical-align: middle">
+    <caption>学生成绩表</caption>
     <thead>
         <tr bgcolor=red>
             <th style="width:150px; text-align: center; vertical-align: middle">单号</th>
@@ -61,6 +63,7 @@ gnoc
     {% endfor %}
 
 </table>
+<a id='fun_two' href="javascript:fun_two()" onclick="fun_two()">下载</a>
 
 <!-- 分页 -->
 {% from 'common/page_macro.html' import page_macro %}
@@ -68,6 +71,19 @@ gnoc
 {% endblock %}
 {% block scripts %}
 {{ super() }}
+<script>
+
+    function fun_two() {
+        var html = "<html><head><meta charset='utf-8' /></head><body>" + document.getElementsByTagName("table")[0].outerHTML + "</body></html>";
+        var blob = new Blob([html], { type: "application/vnd.ms-excel" });
+        var a = document.getElementsByTagName("a")[0];
+        $("#fun_two").click(function () {
+            a.href = URL.createObjectURL(blob);
+            a.download = "学生成绩表.xls";
+        });
+    }
+
+</script>
 <script>
     function fun(TagName) {
         var obj = document.getElementById(TagName);
